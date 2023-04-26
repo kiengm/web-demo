@@ -1,0 +1,42 @@
+body{
+    background: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+#cover{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+#form-login{
+  max-width: 400px;
+  
+    background:rgba(0, 0, 0 ,0.7);
+    padding: 30px 30px 40px;
+    box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.7);
+
+    
+}
+.form-group{
+    border-bottom: 1px solid #fff;
+    margin-top: 15px;
+    margin-bottom: 20;
+}
+.form-input{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: #fff;
+}
+.form-submit{
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 100%;
+}
+.form-submit:hover{
+    border: 1px solid rgb(238, 12, 12);
+
+}

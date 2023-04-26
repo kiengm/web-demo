@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.pagination {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+</style>
+</head>
+<body>
+
+<h2>Centered Pagination</h2>
+
+<div class="center">
+  <div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#">1</a>
+  <a href="#" class="active">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+  </div>
+</div>
+
+</body>
+<script>
+    const itemsPerPage = 10; // Số lượng mục hiển thị trên mỗi trang
+const totalPages = Math.ceil(data.length / itemsPerPage); // Tính tổng số trang
+let currentPage = 1; // Trang hiện tại
+
+function showData(page) {
+  const startIndex = (page - 1) * itemsPerPage; // Vị trí bắt đầu hiển thị dữ liệu
+  const endIndex = startIndex + itemsPerPage; // Vị trí kết thúc hiển thị dữ liệu
+  const pageData = data.slice(startIndex, endIndex); // Lấy ra dữ liệu cho trang hiện tại
+
+  // Hiển thị dữ liệu lên trang
+  const tableBody = document.querySelector("#table-body");
+  tableBody.innerHTML = "";
+  pageData.forEach((item) => {
+    const row = document.createElement("li");
+    row.innerHTML = `${item}`;
+    tableBody.appendChild(row);
+  });
+}
+
+function showPageNumbers() {
+  const pagination = document.querySelector("#pagination");
+  pagination.innerHTML = "";
+
+  // Hiển thị nút Previous
+  const previousButton = document.createElement("a");
+  previousButton.innerHTML = "&laquo;";
+  previousButton.href = "#";
+  if (currentPage === 1) {
+    previousButton.classList.add("disabled");
+  } else {
+    previousButton.addEventListener("click", () => {
+      currentPage--;
+      showData(currentPage);
+      showPageNumbers();
+    });
+  }
+  pagination.appendChild(previousButton);
+
+  // Hiển thị các nút phân trang
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement("a");
+    pageButton.innerHTML = i;
+    pageButton.href = "#";
+    if (i === currentPage) {
+      pageButton.classList.add("active");
+    } else {
+      pageButton.addEventListener("click", () => {
+        currentPage = i;
+        showData(currentPage);
+        showPageNumbers();
+      });
+    }
+    pagination.appendChild(pageButton);
+  }
+
+  // Hiển thị nút Next
+  const nextButton = document.createElement("a");
+  nextButton.innerHTML = "&raquo;";
+  nextButton.href = "#";
+  if (currentPage === totalPages) {
+    nextButton.classList.add("disabled");
+  } else {
+    nextButton.addEventListener("click", () => {
+      currentPage++;
+      showData(currentPage);
+      showPageNumbers();
+    });
+  }
+  pagination.appendChild(nextButton);
+}
+
+// Mặc định hiển thị trang đầu tiên và các nút phân trang
+showData(currentPage);
+showPageNumbers();
+``
+
+</script>
+</html>
+
+

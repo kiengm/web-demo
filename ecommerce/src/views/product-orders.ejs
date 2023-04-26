@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Jetson I Fast build Admin dashboard for any platform</title>
+	<meta name="description" content="Jetson is a Dashboard & Admin Site Responsive Template by hencework." />
+	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Jetson Admin, Jetsonadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+	<meta name="author" content="hencework"/>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+	<!-- vector map CSS -->
+	<link href="../vendors/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- Custom Fonts -->
+    <link href="../dist/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+	<!-- Data table CSS -->
+	<link href="../vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- Custom CSS -->
+	<link href="../dist/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<!--Preloader-->
+		<%-include("layout/left-sidebar")%>
+		<!-- /Left Sidebar Menu -->
+		
+		<!-- Right Sidebar Menu -->
+		<%-include("layout/right-sidebar")%>
+		<!-- /Right Sidebar Menu -->
+		
+		
+        
+		<!-- Main Content -->
+		<div class="page-wrapper">
+            <div class="container-fluid">
+				<!-- Title -->
+				<div class="row heading-bg">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+					  <h5 class="txt-dark">product orders</h5>
+					</div>
+					<!-- Breadcrumb -->
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+					  <ol class="breadcrumb">
+						
+						<li>
+							<label for="">menu hisyory</label>
+							<input type="checkbox" id="history">
+							
+							<button type="button" id="sub">menu history</button>
+							
+							
+						 </li>
+						<li><a href="index.html">Dashboard</a></li>
+						<li><a href="#"><span>e-commerce</span></a></li>
+						<li class="active"><span>product-orders</span></li>
+					  </ol>
+					</div>
+					<!-- /Breadcrumb -->
+				</div>
+				<!-- /Title -->
+				
+				<!-- Row -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default card-view">
+							<div class="panel-wrapper collapse in">
+								<div class="panel-body row">
+									<div class="table-wrap">
+										<div class="table-responsive">
+											<table class="table display responsive product-overview mb-30" id="myTable">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Order ID</th>
+														<th>Photo</th>
+														<th>Product</th>
+														<th>Quantity</th>
+														<th>Date</th>
+														<th>Status</th>
+														<th id="action">Actions</th>
+														
+															
+															
+													</tr>
+												</thead>
+												<tbody>
+													<%data.forEach(data1=>{%>
+														<tr>
+															<td class="txt-dark"><%=data1.user_name%></td>
+															<td class="txt-dark"><%=data1.order_id%></td>
+															<td>
+																<img src="../../dist/img/product/<%=data1.thumbnails%>" alt="iMac" width="80">
+															</td>
+															<td><%=data1.name%></td>
+															<td><%=data.quantity%></td>
+															<td>10-10-2016</td>
+															<td>
+																<span class="label label-success font-weight-100">Paid</span>
+															</td>
+															<td><button onclick="orderUp('<%=data1.order_id%>%>')" class="btn-delete">order up</button></td>
+															<!-- <td><a href="javascript:void(0)" class="text-inverse pr-10" title="Edit" data-toggle="tooltip"><i class="zmdi zmdi-edit txt-warning"></i></a><a href="javascript:void(0)" class="text-inverse" title="Delete" data-toggle="tooltip"><i class="zmdi zmdi-delete txt-danger"></i></a></td> -->
+														</tr>
+
+														<%})%>
+													
+													
+												</tbody>
+											</table>
+										</div>
+									</div>	
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Row -->
+			</div>
+			
+			<!-- Footer -->
+			<footer class="footer container-fluid pl-30 pr-30">
+				<div class="row">
+					<div class="col-sm-12">
+						<p>2017 &copy; Jetson. Pampered by Hencework</p>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+			
+		</div>
+        <!-- /Main Content -->
+
+    </div>
+    <!-- /#wrapper -->
+	
+	<!-- JavaScript -->
+	
+    <!-- jQuery -->
+    <script src="../
+	vendors/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+	<!-- Data table JavaScript -->
+	<script src="../vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="../dist/js/productorders-data.js"></script>
+	
+	<!-- Slimscroll JavaScript -->
+	<script src="../dist/js/jquery.slimscroll.js"></script>
+	
+	<!-- Owl JavaScript -->
+	<script src="../vendors/bower_components/owl.carousel/dist/owl.carousel.min.js"></script>
+	
+	<!-- Switchery JavaScript -->
+	<script src="../vendors/bower_components/switchery/dist/switchery.min.js"></script>
+		
+	<!-- Fancy Dropdown JS -->
+	<script src="../dist/js/dropdown-bootstrap-extended.js"></script>
+		
+	<!-- Init JavaScript -->
+	<script src="../dist/js/init.js"></script>
+	
+</body>
+
+<script>
+	
+		$("#sub").click(()=>{
+		//	alert("hello")
+	
+		})
+	function updateTable(data1){
+		console.log(data1.data.length)
+		$('#myTable tbody').empty();
+    
+    // // Thêm dữ liệu mới vào bảng
+    for (var i = 0; i < data1.data.length; i++) {
+      var row = $('<tr>');
+      row.append($('<td>').text(data1.data[i].user_name));
+      row.append($('<td>').text(data1.data[i].name));
+      row.append($('<td>').text(data1.data[i].price));
+      $('#myTable tbody').append(row);
+    }
+
+	}
+	
+	
+</script>
+<script>
+	function orderUp(order_id){
+		var url = 'http://localhost:3000/admin/productOrder/update'
+		console.log("id"+order_id)
+    
+    // Gửi dữ liệu qua server bằng phương thức GET
+    $.get(url,{order_id:order_id}, function(data1) {
+		var table = document.getElementById("myTable");
+		var rows = table.getElementsByTagName("tr");
+
+		for (var i = 0; i < rows.length; i++) {
+ 		 rows[i].onclick = function() {
+   		 var rowIndex = this.rowIndex;
+		 table.remove(rowIndex)
+   		// console.log("Selected row index: " + rowIndex);
+		 
+  		}
+		}	
+		
+    });
+	$('#myTable').on('click', '.btn-delete', function() {
+    var row = $(this).closest('tr'); // Lấy hàng muốn xóa
+    var id = $(this).data('id'); // Lấy ID của hàng muốn xóa
+
+    // Gửi yêu cầu Ajax đến máy chủ để xóa hàng
+    $.ajax({
+      url: 'http://localhost:3000/admin/productOrder', // Thêm ID của hàng vào URL
+      type: 'GET', // Sử dụng phương thức GET
+      success: function(response) {
+		console.log(response)
+		 // Xử lý kết quả trả về từ máy chủ
+        if (response) { // Nếu xóa hàng thành công
+          row.remove(); // Xóa hàng khỏi bảng
+        } else {
+          alert('Đã có lỗi xảy ra'); // Thông báo nếu xóa hàng thất bại
+        }
+      }
+    });
+  });
+		
+
+	}
+	
+</script>
+<script>
+	// var checkbox=document.getElementById("history")
+	// if(checkbox.checked){
+	// 	var url = 'http://localhost:3000/admin/productOrder'
+    
+    // // Gửi dữ liệu qua server bằng phương thức GET
+    // $.get(url,{state:0}, function(data1) {
+	// 	//console.log(data1)
+	// 	updateTable(data1)
+		
+		
+    // });
+	
+
+	// }
+	$('input[type="checkbox"]').change(function() {
+    if(this.checked) {
+		var url = 'http://localhost:3000/admin/productOrder'
+    
+    // Gửi dữ liệu qua server bằng phương thức GET
+    $.get(url,{state:2}, function(data1) {
+		//console.log(data1)
+		updateTable(data1)
+		//$('#action').hide();
+		$('#myTable').DataTable().column(7).visible(false)
+		
+		
+    });
+	
+		
+      
+   } 
+	else {
+		
+		var url = 'http://localhost:3000/admin/productOrder'
+    
+    // Gửi dữ liệu qua server bằng phương thức GET
+    $.get(url,{state:0}, function(data1) {
+		console.log(data1)
+		updateTable(data1)
+		$('#action').show();
+		$('.btnOrder').show();
+		
+		
+		
+    });
+    }
+  });
+  
+   function updateTable(data1){
+		console.log(data1)
+		//$('#myTable').dataTable().fnDestroy();;
+	$('#myTable').DataTable().destroy();
+    // // Thêm dữ liệu mới vào bảng
+	// cái này m gọi n lần lỗi là đúng rồi
+	// cứ ấn update nhiều là lỗi
+	$('#myTable').DataTable( {
+    data: data1.data,
+    columns: [
+        { data: 'user_name' },
+        { data: 'order_id' },
+        { data: "thumbnails" ,
+              "render": function ( data) {
+              return '<img src="../../dist/img/product/'+data+'" width="40px">';}
+            },
+        { data: 'name' },
+		{ data: 'quantity' },
+		{ data: 'updated_at' },
+		{ data: 'state' },
+		{ data: 'order_id',
+		"render": function ( data) {
+              return '<button ="btnOrder" onclick="orderUp('+data+')" class="btn-delete">order up</button>';},
+			  'class':"btnOrder"
+
+	 }
+    ], 
+	destroy: true
+} );
+	}
+	console.log($('#myTable'))
+</script>
+
+</html>
